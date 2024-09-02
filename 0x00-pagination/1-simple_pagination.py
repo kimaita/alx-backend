@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Contains a class for interacting with a dataset"""
 
 import csv
