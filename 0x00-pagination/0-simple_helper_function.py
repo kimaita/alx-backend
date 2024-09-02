@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""Contains a paging helper function"""
 
 from typing import Tuple
 
