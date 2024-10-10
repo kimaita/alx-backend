@@ -1,3 +1,4 @@
 # Queuing System in JS
 
-Redis in Node jS
+- Redis with Node jS
+- `kue` for job queueing and processing
