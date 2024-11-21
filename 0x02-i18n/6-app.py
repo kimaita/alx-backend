@@ -34,7 +34,8 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """Sets the current user for a request in a global object"""
+    """Sets the current user for a request in a global object
+    """
     user = get_user()
     if user:
         g.user = user
@@ -51,9 +52,6 @@ def get_locale():
     locale = request.args.get("locale")
     if locale and locale in app.config["LANGUAGES"]:
         return locale
-
-    if g.user and g.user["locale"] in app.config["LANGUAGES"]:
-        return g.user["locale"]
 
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
