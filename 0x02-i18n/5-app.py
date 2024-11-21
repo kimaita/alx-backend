@@ -34,6 +34,8 @@ def get_user():
 
 @app.before_request
 def before_request():
+    """Sets the current user for a request in a global object
+    """
     user = get_user()
     if user:
         g.user = user
@@ -66,4 +68,4 @@ def hello():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
