@@ -29,11 +29,7 @@ def get_locale():
 @app.route("/")
 def hello():
     """Returns a hello world page"""
-    data = {
-        "home_title": "Welcome to Holberton",
-        "home_header": "Hello world",
-    }
-    return render_template("3-index.html", **data)
+    return render_template("3-index.html")
 
 
 if __name__ == "__main__":

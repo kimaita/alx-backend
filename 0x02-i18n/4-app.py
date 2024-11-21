@@ -21,8 +21,8 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """Returns a request's locale
-    
-    Use the locale specified in the request params or    
+
+    Use the locale specified in the request params or
     try match the best language from the `Accept-Language` header
     against the config languages
     """
@@ -36,11 +36,8 @@ def get_locale():
 @app.route("/")
 def hello():
     """Returns a hello world page"""
-    data = {
-        "home_title": "Welcome to Holberton",
-        "home_header": "Hello world",
-    }
-    return render_template("3-index.html", **data)
+
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
