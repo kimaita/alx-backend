@@ -55,7 +55,7 @@ def get_locale():
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def hello():
     """Returns a hello world page"""
 
