@@ -15,7 +15,7 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-# babel = Babel(app)
+babel = Babel(app)
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -34,14 +34,13 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """Sets the current user for a request in a global object
-    """
+    """Sets the current user for a request in a global object"""
     user = get_user()
     if user:
         g.user = user
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale():
     """Returns a request's locale
 
@@ -50,15 +49,13 @@ def get_locale():
     against the config languages
     """
     locale = request.args.get("locale")
-    if locale and locale in app.config["LANGUAGES"]:
+    if not locale and g.get("user"):
+        locale = g.user.get("locale")
+
+    if locale in app.config["LANGUAGES"]:
         return locale
 
-    if g.get('user') and g.user["locale"] in app.config["LANGUAGES"]:
-        return g.user["locale"]
-
     return request.accept_languages.best_match(app.config["LANGUAGES"])
-
-babel = Babel(app, locale_selector=get_locale)
 
 
 @app.route("/")
@@ -69,7 +66,7 @@ def hello():
     if g.get("user"):
         data["username"] = g.user["name"]
 
-    return render_template("5-index.html", **data)
+    return render_template("6-index.html", **data)
 
 
 if __name__ == "__main__":
